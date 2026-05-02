@@ -1,0 +1,66 @@
+---
+interface Props {
+	title: string;
+    description?: string;
+}
+
+const { title, description = "مدونة علمية للدكتور خوان مويسيس دي لا سيرنا" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+		<style is:global>
+			:root {
+				--accent: 26, 42, 108;
+				--accent-light: 178, 31, 31;
+				--accent-dark: 253, 187, 45;
+			}
+			html {
+				font-family: 'Cairo', sans-serif;
+				background: #fdfdfd;
+                color: #222;
+			}
+			body {
+				margin: 0;
+                padding: 0;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Amiri', serif;
+			}
+            article {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+                line-height: 1.8;
+                font-size: 1.1rem;
+            }
+            .bibliography {
+                background: #f9f9f9;
+                padding: 1.5rem;
+                border-right: 5px solid var(--accent);
+                margin-top: 3rem;
+            }
+		</style>
+	</head>
+	<body>
+        <nav style="background: var(--accent); color: white; padding: 1rem;">
+            <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                <a href="/" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.5rem;">المدونة العلمية</a>
+            </div>
+        </nav>
+		<slot />
+        <footer style="background: #333; color: white; text-align: center; padding: 2rem; margin-top: 4rem;">
+            <p>&copy; 2026 د. خوان مويسيس دي لا سيرنا - جميع الحقوق محفوظة</p>
+        </footer>
+	</body>
+</html>

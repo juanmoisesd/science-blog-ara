@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('neuroscience');
+---
+
+<Layout title="مقالات علوم الأعصاب">
+  <main style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+    <h1 style="color: #1a2a6c; text-align: center;">علوم الأعصاب</h1>
+    <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+      {posts.map(post => (
+        <a href={`/neuroscience/${post.slug}`} style="background: white; padding: 1.5rem; border-radius: 10px; text-decoration: none; color: inherit; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+          <h2 style="margin: 0; color: #b21f1f;">{post.data.title}</h2>
+          <p style="margin-top: 0.5rem; color: #666;">بقلم {post.data.author} - {post.data.date}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
